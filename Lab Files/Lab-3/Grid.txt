@@ -1,0 +1,55 @@
+# Draw the dynamic grid (game floor)
+    glBegin(GL_QUADS)
+    tile_size = 60  # Size of each checkerboard square
+    
+    # Iterate through the grid space
+    for x in range(-GRID_LENGTH, GRID_LENGTH, tile_size):
+        for y in range(-GRID_LENGTH, GRID_LENGTH, tile_size):
+            # Calculate grid index for alternating colors
+            i = (x + GRID_LENGTH) // tile_size
+            j = (y + GRID_LENGTH) // tile_size
+            
+            if (i + j) % 2 == 0:
+                glColor3f(1, 1, 1)  # White
+            else:
+                glColor3f(0.7, 0.5, 0.95)  # Light Purple
+
+            # Draw the square tile
+            glVertex3f(x, y, 0)
+            glVertex3f(x + tile_size, y, 0)
+            glVertex3f(x + tile_size, y + tile_size, 0)
+            glVertex3f(x, y + tile_size, 0)
+    glEnd()
+
+    # Draw the four vertical boundaries
+    WALL_HEIGHT = 60
+    glBegin(GL_QUADS)
+    
+    # Far/Top Wall (Cyan)
+    glColor3f(0, 1, 1)
+    glVertex3f(-GRID_LENGTH, GRID_LENGTH, 0)
+    glVertex3f(GRID_LENGTH, GRID_LENGTH, 0)
+    glVertex3f(GRID_LENGTH, GRID_LENGTH, WALL_HEIGHT)
+    glVertex3f(-GRID_LENGTH, GRID_LENGTH, WALL_HEIGHT)
+
+    # Near/Bottom Wall (Yellow - not strictly visible in your image, but completes the box)
+    glColor3f(1, 1, 0)
+    glVertex3f(-GRID_LENGTH, -GRID_LENGTH, 0)
+    glVertex3f(GRID_LENGTH, -GRID_LENGTH, 0)
+    glVertex3f(GRID_LENGTH, -GRID_LENGTH, WALL_HEIGHT)
+    glVertex3f(-GRID_LENGTH, -GRID_LENGTH, WALL_HEIGHT)
+
+    # Left Wall (Blue)
+    glColor3f(0, 0, 1)
+    glVertex3f(-GRID_LENGTH, -GRID_LENGTH, 0)
+    glVertex3f(-GRID_LENGTH, GRID_LENGTH, 0)
+    glVertex3f(-GRID_LENGTH, GRID_LENGTH, WALL_HEIGHT)
+    glVertex3f(-GRID_LENGTH, -GRID_LENGTH, WALL_HEIGHT)
+
+    # Right Wall (Green)
+    glColor3f(0, 1, 0)
+    glVertex3f(GRID_LENGTH, -GRID_LENGTH, 0)
+    glVertex3f(GRID_LENGTH, GRID_LENGTH, 0)
+    glVertex3f(GRID_LENGTH, GRID_LENGTH, WALL_HEIGHT)
+    glVertex3f(GRID_LENGTH, -GRID_LENGTH, WALL_HEIGHT)
+    glEnd()

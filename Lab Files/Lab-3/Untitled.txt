@@ -1,0 +1,19 @@
+Let's break down this sequence of code line by line to understand what each             part does:
+1.     glPushMatrix(): Saves the current transformation matrix state to the stack. This allows you to apply transformations and later revert to this saved state using glPopMatrix().
+2.     glTranslatef(2.0, 0.0, 0.0): Translates (moves) the coordinate system 2 units to the right (along the x-axis). This transformation will affect all subsequent drawing commands.
+3.     glColor3f(1.0, 0.0, 0.0): Sets the current color to red.
+4.     draw_square(): Draws a square at the new position (translated 2 units to the right).
+5.     glRotatef(45, 0.0, 0.0, 1.0): Rotates the coordinate system 45 degrees around the z-axis. This transformation will affect all subsequent drawing commands.
+6.     glColor3f(0.0, 1.0, 0.0): Sets the current color to green.
+7.     draw_square(): Draws a square at the current position, which is translated 2 units to the right and rotated 45 degrees.
+8.     glTranslatef(2.0, 0.0, 0.0): Translates the coordinate system another 2 units to the right. This transformation will affect all subsequent drawing commands.
+9.     glColor3f(0.0, 0.0, 1.0): Sets the current color to blue.
+10.  draw_square(): Draws a square at the new position, which is now translated 4 units to the right and rotated 45 degrees.
+11.  glRotatef(45, 0.0, 0.0, 1.0): Rotates the coordinate system another 45 degrees around the z-axis. This transformation will affect all subsequent drawing commands.
+12.  glColor3f(1.0, 1.0, 0.0): Sets the current color to yellow.
+13.  draw_square(): Draws a square at the current position, which is translated 4 units to the right and rotated 90 degrees in total.
+14.  glTranslatef(2.0, 0.0, 0.0): Translates the coordinate system another 2 units to the right. This transformation will affect all subsequent drawing commands.
+15.  glColor3f(1.0, 0.0, 1.0): Sets the current color to purple.
+16.  draw_square(): Draws a square at the new position, which is translated 6 units to the right and rotated 90 degrees in total.
+17.  glPopMatrix(): Restores the matrix state to what it was before the glPushMatrix(). This undoes all the transformations applied since the glPushMatrix().
+By applying these transformations in sequence, each draw_square() command places a square at a different position and orientation, creating a series of squares with combined translations and rotations. The transformations accumulate, so each square is drawn relative to the previously applied transformations.
